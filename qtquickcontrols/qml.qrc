@@ -1,0 +1,19 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Pictures/Menuebild.jpg</file>
+        <file>Spielbildschirm.qml</file>
+        <file>Pictures/Hintergrund.jpg</file>
+        <file>Startbildschirm.qml</file>
+        <file>BasicLogic.js</file>
+        <file>Reserve.qml</file>
+        <file>Pictures/Deckung1.png</file>
+        <file>Pictures/Deckung2.png</file>
+        <file>Pictures/Deckung3.png</file>
+        <file>Terrorist1.qml</file>
+        <file>Pictures/Ak-Terrorist2.png</file>
+        <file>SteinDeckung.qml</file>
+        <file>MauerDeckung.qml</file>
+        <file>HolzDeckung.qml</file>
+    </qresource>
+</RCC>
