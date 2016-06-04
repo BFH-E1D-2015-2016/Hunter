@@ -15,5 +15,8 @@
         <file>SteinDeckung.qml</file>
         <file>MauerDeckung.qml</file>
         <file>HolzDeckung.qml</file>
+        <file>Pictures/MenuebildOnExit.jpg</file>
+        <file>Pictures/MenuebildOnPlay.jpg</file>
+        <file>Pictures/MenuebildOnScore.jpg</file>
     </qresource>
 </RCC>

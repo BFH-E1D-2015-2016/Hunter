@@ -32,6 +32,14 @@ Rectangle {
 
             MouseArea {
                 anchors.fill: parent
+                hoverEnabled: true
+                onEntered: {
+                    hingergrund.source = "qrc:///Pictures/MenuebildOnPlay.jpg"
+                }
+                onExited: {
+                    hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                }
+
                 onClicked: {
                     mainGame.startGame();
                     BasicLogic.showGameScreen();}
@@ -47,6 +55,13 @@ Rectangle {
             height: 30
             MouseArea {
                         anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: {
+                            hingergrund.source = "qrc:///Pictures/MenuebildOnExit.jpg"
+                        }
+                        onExited: {
+                            hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                        }
                         onClicked: { console.log("Show End Screen!");Qt.quit(); }
             }
 
@@ -60,6 +75,13 @@ Rectangle {
             height: 30
                 MouseArea {
                         anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: {
+                            hingergrund.source = "qrc:///Pictures/MenuebildOnScore.jpg"
+                        }
+                        onExited: {
+                            hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                        }
                         onClicked: { console.log("Show Score Screen!"); }
             }
 

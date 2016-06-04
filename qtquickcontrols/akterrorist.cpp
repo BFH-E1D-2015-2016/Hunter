@@ -69,7 +69,7 @@ void AkTerrorist::timerSlot(){
     //strobo bei tot
     if((liveLevel == 0)&&(visableTime != 0)){
         visableTime--;         //Timer für den strobo
-        visibel = !visibel;     //strobo
+        visibel = !visibel;    //strobo
         }
     else if((liveLevel == 0)&&(visableTime == 0)){  // strob beenden und Objekt vernichten
         visibel= false; // strobo beende
