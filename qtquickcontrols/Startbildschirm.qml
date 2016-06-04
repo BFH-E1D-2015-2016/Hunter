@@ -1,5 +1,6 @@
 import QtQuick 2.3
 import QtQuick.Controls 1.2
+import QtMultimedia 5.5
 import "BasicLogic.js" as BasicLogic
 
 Rectangle {
@@ -62,7 +63,12 @@ Rectangle {
                         onExited: {
                             hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
                         }
-                        onClicked: { console.log("Show End Screen!");Qt.quit(); }
+                        onClicked: {
+                            console.log("Show End Screen!")
+                            Qt.quit()
+
+                            //playMusic.pause()     Stoppe Audio für testen
+                            }
             }
 
         }
@@ -82,10 +88,27 @@ Rectangle {
                         onExited: {
                             hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
                         }
-                        onClicked: { console.log("Show Score Screen!"); }
+                        onClicked: {
+                            console.log("Show Score Screen!")
+                            /* Audio information auf Konsole drucken
+                            console.log(playMusic.mediaObject)
+                            console.log(playMusic.source)
+                            console.log(playMusic.PlayingState)
+                            console.log(playMusic.playbackState)
+                             */
+                        }
             }
 
         }
+        Audio{
+            id:playMusic
+            //Link einfügen source: "Audio/mainpagemusic.wma"
+            autoLoad: true
+            autoPlay: true
+            muted: false
+            volume: 1.0
+        }
+
    }
 
 

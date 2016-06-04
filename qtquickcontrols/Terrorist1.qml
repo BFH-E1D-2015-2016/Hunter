@@ -26,12 +26,12 @@ Item {
             MouseArea{
                 id: mA
                 anchors.fill:parent
-                onEntered:{
+                propagateComposedEvents: true
+                onClicked:{
                     mainGame.hit(xOrdinate,yOrdinate)
                     //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
+                    //mouse.accepted = false
                 }
-
-
             }
         }
 }

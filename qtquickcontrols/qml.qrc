@@ -18,5 +18,8 @@
         <file>Pictures/MenuebildOnExit.jpg</file>
         <file>Pictures/MenuebildOnPlay.jpg</file>
         <file>Pictures/MenuebildOnScore.jpg</file>
+        <file>Audio/Allabak.m4a</file>
+        <file>Audio/GunshotPlayer.mp3</file>
+        <file>Audio/mainpagemusic.wma</file>
     </qresource>
 </RCC>

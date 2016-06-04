@@ -2,6 +2,7 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
+import QtMultimedia 5.0
 import "BasicLogic.js" as BasicLogic
 
 Rectangle {
@@ -55,11 +56,37 @@ Rectangle {
 
 
 
-     SteinDeckung{x:450;y:200;}
-     MauerDeckung{x:200;y:200;}
-     HolzDeckung {x:000;y:200;}
+     SteinDeckung
+     {
+         x:450
+         y:200
+     }
 
+     MauerDeckung
+     {
+         x:200
+         y:200
+     }
 
+     HolzDeckung
+     {
+         x:000
+         y:200
+     }
 
+     MouseArea{
+         propagateComposedEvents: true
+         anchors.fill:parent
+         onClicked:{
+             playGunshot.play
+             console.log(playGunshot.error)
+             console.log("SHOT FIRED")
+             mouse.accepted = false
+         }
+     }
+    Audio{
+        id: playGunshot
+        //source:"Link eifügen"
+    }
 
 }

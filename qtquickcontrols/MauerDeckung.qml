@@ -20,7 +20,7 @@ Item {
         MouseArea{
             id: mA
             anchors.fill:parent
-            onEntered:{
+            onClicked:{
                 console.log("Deckung was shoted!");
             }
 
