@@ -75,20 +75,33 @@ Rectangle {
      }
 
      SoundEffect{
-         id: playGunshot
+         id: playGunshot0
          source:"Audio/GunshotPlayer.wav"
      }
+     SoundEffect{
+         id: playGunshot1
+         source:"Audio/GunshotPlayer.wav"
+     }
+
+     property int aNumber: 0
 
      MouseArea{
          propagateComposedEvents: true
          anchors.fill:parent
          onClicked:{
-             playGunshot.play()
-             console.log(playGunshot.Error)
+             if (aNumber === 0)
+             {
+                 playGunshot0.play()
+                 aNumber = 1
+             }
+             else
+             {
+                 playGunshot1.play()
+                 aNumber = 0
+             }
              console.log("SHOT FIRED")
              mouse.accepted = false
          }
      }
-
 
 }
