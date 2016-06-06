@@ -20,7 +20,7 @@ Item {
             Image{
                 width:50
                 height:85
-                source:  "qrc:/Pictures/Ak-Terrorist2.png"
+                source:  "qrc:/Pictures/Kaboom2.png"
             }
 
             MouseArea{

@@ -21,5 +21,6 @@
         <file>Audio/Allabak.m4a</file>
         <file>Audio/GunshotPlayer.mp3</file>
         <file>Audio/mainpagemusic.wma</file>
+        <file>Pictures/Kaboom2.png</file>
     </qresource>
 </RCC>

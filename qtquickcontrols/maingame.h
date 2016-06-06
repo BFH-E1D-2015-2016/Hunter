@@ -61,4 +61,15 @@ QList<QObject*> AkEnemis;
 
 };
 
+/*
+class applicationDir : public QObject
+{
+    Q_OBJECT
+public:
+    QString Path;
+
+signals:
+    sendApplicationDir(Qstring Dir);
+};
+*/
 #endif // MAINGAME_H

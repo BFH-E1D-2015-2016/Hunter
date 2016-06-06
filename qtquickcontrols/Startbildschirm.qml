@@ -65,9 +65,9 @@ Rectangle {
                         }
                         onClicked: {
                             console.log("Show End Screen!")
-                            Qt.quit()
+                            //Qt.quit()
 
-                            //playMusic.pause()     Stoppe Audio für testen
+                            playMusic.pause()     //Stoppe Audio für testen
                             }
             }
 
@@ -90,18 +90,20 @@ Rectangle {
                         }
                         onClicked: {
                             console.log("Show Score Screen!")
-                            /* Audio information auf Konsole drucken
+                            // Audio information auf Konsole drucken
                             console.log(playMusic.mediaObject)
                             console.log(playMusic.source)
                             console.log(playMusic.PlayingState)
                             console.log(playMusic.playbackState)
-                             */
+                            console.log(applicationDir)
+
                         }
             }
 
         }
         Audio{
             id:playMusic
+            source: "file:///" + applicationDir + "Audio/mainpagemusic.wma"
             //Link einfügen source: "Audio/mainpagemusic.wma"
             autoLoad: true
             autoPlay: true
