@@ -15,7 +15,7 @@ Rectangle {
         anchors.bottomMargin: 0
         anchors.leftMargin: 0
         anchors.topMargin: 0
-        source:  "qrc:///Pictures/Menuebild.jpg"
+        source:  "Pictures/Menuebild.jpg"
         anchors.fill: parent;
 
 
@@ -35,10 +35,10 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 onEntered: {
-                    hingergrund.source = "qrc:///Pictures/MenuebildOnPlay.jpg"
+                    hingergrund.source = "Pictures/MenuebildOnPlay.jpg"
                 }
                 onExited: {
-                    hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                    hingergrund.source = "Pictures/Menuebild.jpg"
                 }
 
                 onClicked: {
@@ -58,10 +58,10 @@ Rectangle {
                         anchors.fill: parent
                         hoverEnabled: true
                         onEntered: {
-                            hingergrund.source = "qrc:///Pictures/MenuebildOnExit.jpg"
+                            hingergrund.source = "Pictures/MenuebildOnExit.jpg"
                         }
                         onExited: {
-                            hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                            hingergrund.source = "Pictures/Menuebild.jpg"
                         }
                         onClicked: {
                             console.log("Show End Screen!")
@@ -83,10 +83,10 @@ Rectangle {
                         anchors.fill: parent
                         hoverEnabled: true
                         onEntered: {
-                            hingergrund.source = "qrc:///Pictures/MenuebildOnScore.jpg"
+                            hingergrund.source = "Pictures/MenuebildOnScore.jpg"
                         }
                         onExited: {
-                            hingergrund.source = "qrc:///Pictures/Menuebild.jpg"
+                            hingergrund.source = "Pictures/Menuebild.jpg"
                         }
                         onClicked: {
                             console.log("Show Score Screen!")
@@ -103,12 +103,12 @@ Rectangle {
         }
         Audio{
             id:playMusic
-            source: "file:///" + applicationDir + "Audio/mainpagemusic.wma"
+            source: "Audio/mainpagemusic.wma"
             //Link einfügen source: "Audio/mainpagemusic.wma"
             autoLoad: true
             autoPlay: true
             muted: false
-            volume: 1.0
+            volume: 0.5
         }
 
    }

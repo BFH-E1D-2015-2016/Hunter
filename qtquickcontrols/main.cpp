@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
     /*
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty("applicationDir", QDir::currentPath());
-    engine.load(QUrl(QStringLiteral("qrc:/Startbildschirm.qml")));
+    engine.load(QUrl(QStringLiteral("Startbildschirm.qml")));
 */
 /*
     sendApplicationDir applicationDir;

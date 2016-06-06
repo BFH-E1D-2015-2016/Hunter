@@ -2,7 +2,7 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
-import QtMultimedia 5.0
+import QtMultimedia 5.5
 import "BasicLogic.js" as BasicLogic
 
 Rectangle {
@@ -18,7 +18,7 @@ Rectangle {
         anchors.bottomMargin: 0
         anchors.leftMargin: 0
         anchors.topMargin: 0
-        source:  "qrc:///Pictures/Hintergrund.jpg"
+        source:  "Pictures/Hintergrund.jpg"
         anchors.fill: parent;
      }
 
@@ -74,19 +74,21 @@ Rectangle {
          y:200
      }
 
+     SoundEffect{
+         id: playGunshot
+         source:"Audio/GunshotPlayer.wav"
+     }
+
      MouseArea{
          propagateComposedEvents: true
          anchors.fill:parent
          onClicked:{
-             playGunshot.play
-             console.log(playGunshot.error)
+             playGunshot.play()
+             console.log(playGunshot.Error)
              console.log("SHOT FIRED")
              mouse.accepted = false
          }
      }
-    Audio{
-        id: playGunshot
-        //source:"Link eifügen"
-    }
+
 
 }

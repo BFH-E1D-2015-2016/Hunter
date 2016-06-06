@@ -13,7 +13,7 @@ Item {
 
         Image {
                 id: deck
-                source:  "qrc:/Pictures/Deckung1.png"
+                source:  "Pictures/Deckung1.png"
                 anchors.fill: parent;
             }
 

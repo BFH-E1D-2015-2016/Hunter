@@ -15,7 +15,7 @@ Rectangle {
         anchors.bottomMargin: 0
         anchors.leftMargin: 0
         anchors.topMargin: 0
-        source:  "qrc:///Pictures/Menuebild.jpg"
+        source:  "Pictures/Menuebild.jpg"
         anchors.fill: parent;
 
         Rectangle {

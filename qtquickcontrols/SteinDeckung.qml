@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtQuick.Controls 1.4
 
 Item {
 
@@ -13,7 +14,7 @@ Item {
 
         Image {
                 id: deck
-                source:  "qrc:/Pictures/Deckung2.png"
+                source:  "Pictures/Deckung2.png"
                 anchors.fill: parent;
             }
 
@@ -24,8 +25,13 @@ Item {
                 console.log("Deckung was shoted!");
             }
 
+
         }
     }
+    GroupBox{
+        Rectangle{
 
+        }
+    }
 }
 

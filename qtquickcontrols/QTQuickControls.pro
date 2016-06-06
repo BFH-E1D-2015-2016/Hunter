@@ -6,8 +6,7 @@ SOURCES += main.cpp \
     maingame.cpp \
     akterrorist.cpp
 
-RESOURCES += \
-    qml.qrc
+RESOURCES +=
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -16,7 +15,14 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES += \
-    Pictures/Allabak.m4a
+    HolzDeckung.qml \
+    main.qml \
+    MauerDeckung.qml \
+    Reserve.qml \
+    Spielbildschirm.qml \
+    Startbildschirm.qml \
+    SteinDeckung.qml \
+    Terrorist1.qml
 
 HEADERS += \
     maingame.h \

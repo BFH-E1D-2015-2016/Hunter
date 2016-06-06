@@ -20,7 +20,7 @@ MainGame::MainGame(QObject *parent) : QObject(parent)
 
     //set the enemies and gifts lists as context properties, they are used as models
     engine->rootContext()->setContextProperty("mainGame",this);
-    engine->load(QUrl(QStringLiteral("qrc:/main.qml")));
+    engine->load(QUrl(QStringLiteral("main.qml")));
 }
 
 void MainGame::startGame(){
