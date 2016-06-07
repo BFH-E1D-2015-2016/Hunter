@@ -7,7 +7,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "akterrorist.h"
-//#include "kaboom.h"
+#include "bombterrorist.h"
 
 
 class MainGame : public QObject

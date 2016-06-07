@@ -4,7 +4,8 @@ QT += qml quick widgets
 
 SOURCES += main.cpp \
     maingame.cpp \
-    akterrorist.cpp
+    akterrorist.cpp \
+    bombterrorist.cpp
 
 RESOURCES +=
 
@@ -27,5 +28,6 @@ DISTFILES += \
 
 HEADERS += \
     maingame.h \
-    akterrorist.h
+    akterrorist.h \
+    bombterrorist.h
 
