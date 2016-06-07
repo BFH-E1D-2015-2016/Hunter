@@ -14,9 +14,9 @@ class AkTerrorist : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(double xOrdinate READ getX NOTIFY PosChanged)
-    Q_PROPERTY(double yOrdinate READ getY NOTIFY PosChanged)
-    Q_PROPERTY(bool aCtive READ getVisibel NOTIFY PosChanged)
+    Q_PROPERTY(double xOrdinateAk READ getX NOTIFY PosChanged)
+    Q_PROPERTY(double yOrdinateAk READ getY NOTIFY PosChanged)
+    Q_PROPERTY(bool aCtiveAk READ getVisibel NOTIFY PosChanged)
     Q_PROPERTY(bool StateQml READ getTerroristFire NOTIFY PosChanged)
 
 public:

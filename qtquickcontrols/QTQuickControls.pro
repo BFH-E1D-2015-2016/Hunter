@@ -24,7 +24,8 @@ DISTFILES += \
     Spielbildschirm.qml \
     Startbildschirm.qml \
     SteinDeckung.qml \
-    Terrorist1.qml
+    Terrorist1.qml \
+    Terrorist2.qml
 
 HEADERS += \
     maingame.h \

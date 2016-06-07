@@ -13,7 +13,7 @@ AkTerrorist::AkTerrorist (QObject *parent) : QObject(parent){
     else if(x==2){x=480;y = 150;bewegungsform=1;}// Hinter Steindeckung auftauchen
     //qDebug() << " X = " << x;
     //qDebug() << " Y = " << y;
-    TerroristTyp = TerroristBombe;//(int) qrand() % (int) 2; // Zufallszahl bis 1
+    TerroristTyp = TerroristAk;//(int) qrand() % (int) 2; // Zufallszahl bis 1
     liveLevel= 1;
     visibel = true;
     shootTime = 0;
@@ -26,7 +26,7 @@ AkTerrorist::AkTerrorist (QObject *parent) : QObject(parent){
 }
 
 void AkTerrorist::timerSlot(){
-    // Timer für Sichtbarikeit des Terroristen wenn er Schiesst
+    // Timer für Sichtbarikeit des Schusses ween Terrorist Schiesst
     if(TerroristFire>0){
         TerroristFire--;
     }
@@ -77,7 +77,7 @@ void AkTerrorist::timerSlot(){
     }
     emit PosChanged();
 
-    //AkTerrorist: Schiessen beim nach vorne laufen wenn TerrottistAk
+    //AkTerrorist: Schiessen beim nach vorne laufen
 
 
     if(((x>150&&x<170)||(x>340&&x<410))&&liveLevel!=0&&TerroristTyp == TerroristAk)    //AkTerrorist Befindet sich nicht hinter einer Deckung und lebt noch.
