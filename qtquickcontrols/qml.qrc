@@ -15,12 +15,5 @@
         <file>SteinDeckung.qml</file>
         <file>MauerDeckung.qml</file>
         <file>HolzDeckung.qml</file>
-        <file>Pictures/MenuebildOnExit.jpg</file>
-        <file>Pictures/MenuebildOnPlay.jpg</file>
-        <file>Pictures/MenuebildOnScore.jpg</file>
-        <file>Audio/Allabak.m4a</file>
-        <file>Audio/GunshotPlayer.mp3</file>
-        <file>Audio/mainpagemusic.wma</file>
-        <file>Pictures/Kaboom2.png</file>
     </qresource>
 </RCC>

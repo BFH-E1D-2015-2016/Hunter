@@ -15,6 +15,7 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES += \
+    BasicLogic.js \
     HolzDeckung.qml \
     main.qml \
     MauerDeckung.qml \

@@ -6,6 +6,10 @@ MainGame::MainGame(QObject *parent) : QObject(parent)
     score = 0;
     live = 10;
 
+    //Level Steuerung
+    level = 1;          // In
+    levelTimer = 1000;  // In 10ms
+
     roundTimer = new QTimer(this);   // Create a new timer and make it a child of MainGame
     roundTimer->setInterval(1000);   // set interval in ms
 
@@ -41,18 +45,25 @@ void MainGame::hit(double x,double y){
 }
 
 void MainGame::roundElapsed(){
-    TestVar1++;
-    //emit livesChanged();
-    //TestS1= QStringLiteral("Diese Spiel läuft seit %1. Sekunden").arg(TestVar1);
-    infoString= QStringLiteral("Zeit:%1 ").arg(TestVar1);
-    infoString += QStringLiteral("Leben:%1 ").arg(live);
-    infoString += QStringLiteral("Score%1 ").arg(score);
-    emit setlabeltext(infoString);
-    qDebug() << " 1 sek elapsed " << TestVar1;
 
-    populateAkEnemies();
-    engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
-}
+    if (live>0){
+        TestVar1++;
+        infoString= QStringLiteral("Zeit:%1 ").arg(TestVar1);
+        infoString += QStringLiteral("Leben:%1 ").arg(live);
+        infoString += QStringLiteral("Score%1 ").arg(score);
+        emit setlabeltext(infoString);
+        qDebug() << " 1 sek elapsed " << TestVar1;
+
+        populateAkEnemies();
+        engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
+    }
+    else{
+        live =20;
+        infoString= QStringLiteral("Game over");
+        emit setlabeltext(infoString);
+    }
+    }
+
 
 void MainGame::shotedDown(){
     score=score-10;

@@ -44,6 +44,10 @@ QTimer* bewegungsTimer;
 qint32 TestVar1;
 qint8 i;
 
+//Level Steuerung
+qint8 level;
+qint32 levelTimer;
+
 //für for Schleife
 QObject* testObject;
 
@@ -61,15 +65,4 @@ QList<QObject*> AkEnemis;
 
 };
 
-/*
-class applicationDir : public QObject
-{
-    Q_OBJECT
-public:
-    QString Path;
-
-signals:
-    sendApplicationDir(Qstring Dir);
-};
-*/
 #endif // MAINGAME_H

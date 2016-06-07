@@ -52,27 +52,14 @@ Rectangle {
                y:yOrdinate;
                visible:aCtive;}
 
+
         }
 
 
 
-     SteinDeckung
-     {
-         x:450
-         y:200
-     }
-
-     MauerDeckung
-     {
-         x:200
-         y:200
-     }
-
-     HolzDeckung
-     {
-         x:000
-         y:200
-     }
+     SteinDeckung{x:450;y:100;}
+     MauerDeckung{x:200;y:200;}
+     HolzDeckung {x:000;y:100;}
 
      SoundEffect{
          id: playGunshot0
@@ -103,5 +90,6 @@ Rectangle {
              mouse.accepted = false
          }
      }
+
 
 }

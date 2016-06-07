@@ -63,12 +63,7 @@ Rectangle {
                         onExited: {
                             hingergrund.source = "Pictures/Menuebild.jpg"
                         }
-                        onClicked: {
-                            console.log("Show End Screen!")
-                            //Qt.quit()
-
-                            playMusic.pause()     //Stoppe Audio für testen
-                            }
+                        onClicked: { console.log("Show End Screen!");Qt.quit(); }
             }
 
         }
@@ -88,29 +83,19 @@ Rectangle {
                         onExited: {
                             hingergrund.source = "Pictures/Menuebild.jpg"
                         }
-                        onClicked: {
-                            console.log("Show Score Screen!")
-                            // Audio information auf Konsole drucken
-                            console.log(playMusic.mediaObject)
-                            console.log(playMusic.source)
-                            console.log(playMusic.PlayingState)
-                            console.log(playMusic.playbackState)
-                            console.log(applicationDir)
-
-                        }
+                        onClicked: { console.log("Show Score Screen!"); }
             }
 
         }
         Audio{
             id:playMusic
             source: "Audio/mainpagemusic.wma"
-            //Link einfügen source: "Audio/mainpagemusic.wma"
             autoLoad: true
             autoPlay: true
+            loops: Audio.Infinite
             muted: false
             volume: 0.5
         }
-
    }
 
 

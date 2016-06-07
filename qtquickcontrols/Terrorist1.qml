@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import QtMultimedia 5.5
 
 Item {
 
@@ -20,8 +21,37 @@ Item {
             Image{
                 width:50
                 height:85
-                source:  "Pictures/Kaboom2.png"
+                source:  "Pictures/Ak-Terrorist2.png"
             }
+
+            Rectangle{                  // Schuss links
+                visible: StateQml;
+                color: "yellow";
+                width: 10;
+                height: 20;
+                x:terroristAk.xPos;
+                y:terroristAk.yPos+65;
+            }
+
+            Rectangle{                  // Schuss rechts
+                visible: StateQml;
+                color: "yellow";
+                width: 10;
+                height: 20;
+                x:terroristAk.xPos+40;
+                y:terroristAk.yPos+65;
+
+            }
+
+
+            /*SoundEffect{
+                id: GunShotTerrorist
+                source:"Audio/GunshotPlayer.wav"
+                if(StateQml === true)
+                {
+                    GunShotTerrorist.play()
+                }
+            }*/
 
             MouseArea{
                 id: mA
@@ -30,7 +60,7 @@ Item {
                 onClicked:{
                     mainGame.hit(xOrdinate,yOrdinate)
                     //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
-                    //mouse.accepted = false
+                    mouse.accepted = false
                 }
             }
         }

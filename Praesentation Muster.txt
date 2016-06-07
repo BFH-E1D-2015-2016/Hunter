@@ -1,0 +1,16 @@
+Präsentation:
+Einleitung:
+1. Titel, Projektname, Präsentatoren
+2. Inhaltsverzeichnis, Ablauf
+
+Inhalt:
+3. Das Programm erklären, wie funktionert es?, Aufgabenstellung, Usererlebnis
+4. Vorgehensweise an das Problem, Methodik und wie wurde es Realisiert, Projektablauf
+5. Resultat der Analyse und Grobdesign, Struktur des Programms, Haputproblem bei der Programm und wie das gelöst wurde
+6. (Kernpunkt) Resultat, Testresultat, so und so wurde realisiert, was wurde herausgelassen
+7. Demonstration
+8. Schlussfolgerung, Was hat man gelernt (Erkenntnis), Was würden wir anders machen, persönliches Erlebnis
+
+25 bis 30min
+
+Berich: Was man gesagt hat noch systematischer in einer ähnlichen Struktur in schriftlichen From schreiben
