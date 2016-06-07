@@ -10,10 +10,10 @@ class BombTerrorist  : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(double xOrdinate READ getX NOTIFY PosChanged)
-    Q_PROPERTY(double yOrdinate READ getY NOTIFY PosChanged)
-    Q_PROPERTY(bool aCtive READ getVisibel NOTIFY PosChanged)
-    //Q_PROPERTY(bool StateQml READ getTerroristFire NOTIFY PosChanged)
+    Q_PROPERTY(double xOrdinateBomb READ getX NOTIFY PosChanged)
+    Q_PROPERTY(double yOrdinateBomb READ getY NOTIFY PosChanged)
+    Q_PROPERTY(bool aCtiveBomb READ getVisibel NOTIFY PosChanged)
+    Q_PROPERTY(bool StateQml READ getTerroristDetonates NOTIFY PosChanged)
 
 public:
     explicit BombTerrorist(QObject *parent = 0);
@@ -22,6 +22,7 @@ public:
     double getX();
     double getY();
     bool getVisibel();
+    bool getTerroristDetonates();
 
     double x;
     double y;
@@ -30,6 +31,8 @@ public:
 
 signals:
     void PosChanged();
+
+    void detonates(); // Explotie
     void deathMan(QObject*);      // Gestorben
 
 public slots:
@@ -49,7 +52,6 @@ private:
     // Gibt an ob Terrorist lebt oder Tot ist.
     bool liveLevel;
     bool visibel;        //lässt Terroristen blicken wenn tot;
-    char TerroristFire;
 
     double visableTime; // Timer für Dauer des strobo.
 

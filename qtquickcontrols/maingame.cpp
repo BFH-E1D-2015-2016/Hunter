@@ -56,6 +56,7 @@ void MainGame::roundElapsed(){
 
         populateAkEnemies();
         engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
+        engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
     else{
         live =20;
@@ -71,8 +72,9 @@ void MainGame::shotedDown(){
 }
 
 void MainGame::populateAkEnemies(){
-
-if(AkEnemis.size()<9){
+char AmoutOfEnemies = AkEnemis.size()+BombEnemis.size();
+char Random = (int) qrand() % (int) 2; //Zufallszahl zwischen 0 und 1.
+if((AmoutOfEnemies<9)&&(Random==1)){
         AkTerrorist * akEnemy = new AkTerrorist(this);
 
         connect(bewegungsTimer,SIGNAL(timeout()),akEnemy,SLOT(timerSlot()));
@@ -81,8 +83,16 @@ if(AkEnemis.size()<9){
         connect(akEnemy,SIGNAL(deathMan(QObject*)),this,SLOT(removeAkEnemy(QObject*)));
 
         AkEnemis.append(akEnemy);
-        //
-        //qDebug() << " akEnemi was produced: ";
+}
+if((AmoutOfEnemies<9)&&(Random==0)){
+        BombTerrorist * bombEnemy = new BombTerrorist(this);
+
+        connect(bewegungsTimer,SIGNAL(timeout()),bombEnemy,SLOT(timerSlot()));
+        connect(bombEnemy,SIGNAL(detonates()),this,SLOT(shotedDown()));
+        connect(this,SIGNAL(treffer(double,double)),bombEnemy,SLOT(shotedCheck(double, double)));
+        connect(bombEnemy,SIGNAL(deathMan(QObject*)),this,SLOT(removeBombEnemy(QObject*)));
+
+        BombEnemis.append(bombEnemy);
 }
 
 }
@@ -92,5 +102,13 @@ void MainGame::removeAkEnemy(QObject* akEnemy){
     AkEnemis.removeOne(akEnemy);
     engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
     akEnemy->deleteLater();
+
+}
+
+void MainGame::removeBombEnemy(QObject* bombEnemy){
+    qDebug() << " remove enemy now: " << bombEnemy;
+    BombEnemis.removeOne(bombEnemy);
+    engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
+    bombEnemy->deleteLater();
 
 }

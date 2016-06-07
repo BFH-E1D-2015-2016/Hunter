@@ -12,35 +12,14 @@ BombTerrorist::BombTerrorist (QObject *parent) : QObject(parent){
     visibel = true;
     bombTime = 100;
     visableTime = 2;
-    TerroristFire = 0;
+    bombTime = 100;
 
     //Bewegungen
     speed=1;    // Geschwindikeit der Bewegung
 }
 
 void BombTerrorist::timerSlot(){
-    // Timer für Sichtbarikeit des Terroristen wenn er Schiesst
-    if(TerroristFire>0){
-        TerroristFire--;
-    }
-
-    //BombenTerrorist: Explodiert sobald Timer abgelaufen ist
-    if((y>400)&&liveLevel!=0){
-        //Allbak rufen
-        //Timer starten bis zur zestörung
-        if(bombTime > 0){
-            bombTime--;
-        }
-        else{
-            //BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM
-            qDebug() << this << "explodiert";
-            liveLevel = 0;       // Tot einstellen
-            // Concetion zu maingmae um leben abzuziehen
-            visibel = false;
-            visableTime = 100; // 1 sek strobo. bei Timer 10ms
-        }
-    }
-
+// BEWGUNGEN
     // nach rechts gehen
     if (bewegungsform == 0)     // Bewegt sich aus der Deckung
     {
@@ -83,6 +62,16 @@ void BombTerrorist::timerSlot(){
         emit deathMan(this);
 
         }
+    //Timer zur Selbstexplosion
+    if((y>400)&&(liveLevel==true)){
+        if(bombTime>0){
+            bombTime--;
+        }
+        if((bombTime==0)){
+            liveLevel = 0;
+        }
+    }
+
 }
 
 void BombTerrorist::shotedCheck(double PosX, double PosY){
@@ -108,4 +97,15 @@ double BombTerrorist::getY(){
 
 bool BombTerrorist::getVisibel(){
     return visibel;
+}
+
+bool BombTerrorist::getTerroristDetonates(){
+    //Funktion gibt zurück, ob Terrorist gerade am schiessen ist.
+    bool State;
+    return true;
+}
+
+BombTerrorist::~BombTerrorist()
+{
+    //qDebug() << "Terrorist dead!!!";
 }

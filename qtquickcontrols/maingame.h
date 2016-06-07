@@ -34,6 +34,7 @@ public slots:
     void populateAkEnemies();
 
     void removeAkEnemy(QObject* akEnemy);
+    void removeBombEnemy(QObject* akEnemy);
 
 private:
 QQmlApplicationEngine* engine;
@@ -62,6 +63,7 @@ double trefferY;
 
 QString TestS1;
 QList<QObject*> AkEnemis;
+QList<QObject*> BombEnemis;
 
 };
 

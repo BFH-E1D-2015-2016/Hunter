@@ -46,13 +46,18 @@ Rectangle {
 
    }
 
-    Repeater { model: akEnemy   
+    Repeater { model: akEnemy
         Terrorist1{
-               x:xOrdinate;
-               y:yOrdinate;
-               visible:aCtive;}
+               x:xOrdinateAk;
+               y:yOrdinateAk;
+               visible:aCtiveAk;}
+        }
 
-
+    Repeater { model: bombEnemy
+        Terrorist2{
+               x:xOrdinateBomb;
+               y:yOrdinateBomb;
+               visible:aCtiveBomb;}
         }
 
 
