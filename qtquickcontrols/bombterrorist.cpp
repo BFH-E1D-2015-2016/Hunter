@@ -69,6 +69,8 @@ void BombTerrorist::timerSlot(){
         }
         if((bombTime==0)){
             liveLevel = 0;
+            emit detonates();
+            qDebug()<<"detonated";
         }
     }
 

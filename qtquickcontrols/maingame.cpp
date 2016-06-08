@@ -35,7 +35,7 @@ void MainGame::startGame(){
 
 void MainGame::hit(double x,double y){
     qDebug() << "hit"<< x << y;
-    score=score+10;
+    score=score+1000;
 
     trefferX = x;
     trefferY = y;
