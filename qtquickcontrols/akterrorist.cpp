@@ -1,6 +1,11 @@
 #include "akterrorist.h"
 #define TerroristAk 0
 #define TerroristBombe 1
+#define FirstRigth      0
+#define FirstLeft       1
+#define ToFront         2
+#define Rigth           4
+#define Left            5
 
 
 //AkTerrorist::AkTerrorist()
@@ -48,7 +53,7 @@ void AkTerrorist::timerSlot(){
         }
     }
 
-    // nach rechts gehen
+    // Zuerst nach rechts gehen
     if (bewegungsform == 0)     // Bewegt sich aus der Deckung
     {
         x=x+speed;
@@ -57,7 +62,7 @@ void AkTerrorist::timerSlot(){
             bewegungsform = 2;  // Bewegung  nach vorne wechseln
         }
     }
-    //nach links gehen
+    // Zuerst nach links gehen
     if (bewegungsform == 1)     // Bewegt sich aus der Deckung
     {
         x=x-speed;
@@ -72,7 +77,23 @@ void AkTerrorist::timerSlot(){
         y=y+speed;
         if(y>400)
         {
-            bewegungsform = 3;  //Bewegung gestoppt
+            bewegungsform = (((int) qrand() % (int) 2)+4); // Zufallszahl von 4 bis 5
+        }
+    }
+    else if (bewegungsform == 4)    // Weiter nach rechts gehen
+    {
+        x=x+speed;
+        if(x>500)
+        {
+            bewegungsform = 5; // Wieder nach links gehen
+        }
+    }
+    else if (bewegungsform == 5)    // Weiter nach rechts gehen
+    {
+        x=x-speed;
+        if(x<20)
+        {
+            bewegungsform = 4; // Wieder nach rechts gehen
         }
     }
     emit PosChanged();
