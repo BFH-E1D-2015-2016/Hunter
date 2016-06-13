@@ -8,8 +8,9 @@ Item {
         property int xPos: 0;
         property int yPos: 0;
         property int listAdress: 0;
-
+        signal buttonClick()
         //signal hit(int x,int y);
+
 
         Rectangle{
             id: rect
@@ -18,6 +19,7 @@ Item {
             color: "transparent"
             x:terroristBomb.xPos
             y:terroristBomb.yPos
+
             Image{
                 width:50
                 height:85
@@ -36,10 +38,12 @@ Item {
                 anchors.fill:parent
                 propagateComposedEvents: true
                 onClicked:{
+
                     mainGame.hit(xOrdinateBomb,yOrdinateBomb)
                     //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
                     mouse.accepted = false
                 }
             }
+
         }
 }

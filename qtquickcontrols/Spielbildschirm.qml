@@ -74,6 +74,41 @@ Rectangle {
          id: playGunshot1
          source:"Audio/GunshotPlayer.wav"
      }
+     SoundEffect{
+         id: playGunshotAkTerrorist
+         source:"Audio/GunshotPlayer.wav"
+     }
+     SoundEffect{
+         id: playAllahAkbar
+         source:"Audio/AllahAkbar.wav"
+     }
+     Connections {                        // Mittels Connections verbinden wir das Signal mit dem Qml "Slot"
+                        target: mainGame   // myclassdata wurde als ContextProperty in main.cpp definiert
+                        onPlayDetonatsSound: {     // ganz wichtig !!! hier muss ein Großbuchstabe stehen sonst funktionierts nicht
+                          playAllahAkbar.play(); // das Label wo Hallo World stand enthält nun den Text von C++
+                        }}
+     Connections {                        // Mittels Connections verbinden wir das Signal mit dem Qml "Slot"
+                        target: mainGame   // myclassdata wurde als ContextProperty in main.cpp definiert
+                        onPlayGunSound: {     // ganz wichtig !!! hier muss ein Großbuchstabe stehen sonst funktionierts nicht
+                          playGunshotAkTerrorist.play(); // das Label wo Hallo World stand enthält nun den Text von C++
+                        }}
+
+     Rectangle {
+         width: animation.width; height: animation.height + 8
+
+         AnimatedImage { id: animation; source: "Pictures/explosion.gif" }
+
+         Rectangle {
+             property int frames: animation.frameCount
+
+             width: 4; height: 8
+             x: (animation.width - width) * animation.currentFrame / frames
+             y: animation.height
+             color: "red"
+         }
+     }
+
+
 
      property int aNumber: 0
 

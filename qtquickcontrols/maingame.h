@@ -20,6 +20,8 @@ public:
 
 signals:
     void livesChanged();
+    void playDetonatsSound();
+    void playGunSound();
     void setlabeltext(QString text);
     void treffer(double, double);
 
@@ -27,6 +29,7 @@ public slots:
     void hit(double x,double y);
 
     void shotedDown();
+    void detonatedDown();
 
     void roundElapsed();
     void startGame();

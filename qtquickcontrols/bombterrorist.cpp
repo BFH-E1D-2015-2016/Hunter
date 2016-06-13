@@ -107,6 +107,7 @@ bool BombTerrorist::getTerroristDetonates(){
     return true;
 }
 
+
 BombTerrorist::~BombTerrorist()
 {
     //qDebug() << "Terrorist dead!!!";
