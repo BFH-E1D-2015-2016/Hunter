@@ -93,7 +93,7 @@ Rectangle {
                           playGunshotAkTerrorist.play(); // das Label wo Hallo World stand enthält nun den Text von C++
                         }}
 
-     Rectangle {
+     /*Rectangle {
          width: animation.width; height: animation.height + 8
 
          AnimatedImage { id: animation; source: "Pictures/explosion.gif" }
@@ -106,7 +106,7 @@ Rectangle {
              y: animation.height
              color: "red"
          }
-     }
+     }*/
 
 
 
