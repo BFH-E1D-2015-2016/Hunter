@@ -4,7 +4,8 @@ QT += qml quick widgets
 
 SOURCES += main.cpp \
     maingame.cpp \
-    akterrorist.cpp
+    akterrorist.cpp \
+    bombterrorist.cpp
 
 RESOURCES +=
 
@@ -15,6 +16,7 @@ QML_IMPORT_PATH =
 include(deployment.pri)
 
 DISTFILES += \
+    BasicLogic.js \
     HolzDeckung.qml \
     main.qml \
     MauerDeckung.qml \
@@ -22,9 +24,11 @@ DISTFILES += \
     Spielbildschirm.qml \
     Startbildschirm.qml \
     SteinDeckung.qml \
-    Terrorist1.qml
+    Terrorist1.qml \
+    Terrorist2.qml
 
 HEADERS += \
     maingame.h \
-    akterrorist.h
+    akterrorist.h \
+    bombterrorist.h
 

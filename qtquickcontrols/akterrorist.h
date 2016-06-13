@@ -14,10 +14,10 @@ class AkTerrorist : public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(double xOrdinate READ getX NOTIFY PosChanged)
-    Q_PROPERTY(double yOrdinate READ getY NOTIFY PosChanged)
-    Q_PROPERTY(bool aCtive READ getVisibel NOTIFY PosChanged)
-
+    Q_PROPERTY(double xOrdinateAk READ getX NOTIFY PosChanged)
+    Q_PROPERTY(double yOrdinateAk READ getY NOTIFY PosChanged)
+    Q_PROPERTY(bool aCtiveAk READ getVisibel NOTIFY PosChanged)
+    Q_PROPERTY(bool StateQml READ getTerroristFire NOTIFY PosChanged)
 
 public:
     explicit AkTerrorist(QObject *parent = 0);
@@ -26,6 +26,7 @@ public:
     double getX();
     double getY();
     bool getVisibel();
+    bool getTerroristFire();
 
     double x;
     double y;
@@ -45,7 +46,8 @@ public slots:
     void shotedCheck(double, double);   // Wurde getroffen
 
 private:
-       // Leben
+    // TerroristTyp
+    bool TerroristTyp;
 
     // Für Bewegung
     double speed;       // Bewegungsgeschwindikeit
@@ -54,9 +56,13 @@ private:
     //Für schiessen
     int shootTime;   // Selbstschiesstimer
 
+    //Für Bombe
+    int bombTime;
+
     // Gibt an ob Terrorist lebt oder Tot ist.
     bool liveLevel;
     bool visibel;        //lässt Terroristen blicken wenn tot;
+    char TerroristFire;
 
     double visableTime; // Timer für Dauer des strobo.
 

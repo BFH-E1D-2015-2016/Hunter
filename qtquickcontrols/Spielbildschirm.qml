@@ -46,33 +46,25 @@ Rectangle {
 
    }
 
-    Repeater { model: akEnemy   
+    Repeater { model: akEnemy
         Terrorist1{
-               x:xOrdinate;
-               y:yOrdinate;
-               visible:aCtive;}
+               x:xOrdinateAk;
+               y:yOrdinateAk;
+               visible:aCtiveAk;}
+        }
 
+    Repeater { model: bombEnemy
+        Terrorist2{
+               x:xOrdinateBomb;
+               y:yOrdinateBomb;
+               visible:aCtiveBomb;}
         }
 
 
 
-     SteinDeckung
-     {
-         x:450
-         y:200
-     }
-
-     MauerDeckung
-     {
-         x:200
-         y:200
-     }
-
-     HolzDeckung
-     {
-         x:000
-         y:200
-     }
+     SteinDeckung{x:450;y:100;}
+     MauerDeckung{x:200;y:200;}
+     HolzDeckung {x:000;y:100;}
 
      SoundEffect{
          id: playGunshot0
@@ -103,5 +95,6 @@ Rectangle {
              mouse.accepted = false
          }
      }
+
 
 }

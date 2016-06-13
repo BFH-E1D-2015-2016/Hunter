@@ -4,7 +4,7 @@ import QtMultimedia 5.5
 Item {
 
 
-        id: terroristAk
+        id: terroristBomb
         property int xPos: 0;
         property int yPos: 0;
         property int listAdress: 0;
@@ -16,34 +16,13 @@ Item {
             width:70
             height:85
             color: "transparent"
-            x:terroristAk.xPos
-            y:terroristAk.yPos
+            x:terroristBomb.xPos
+            y:terroristBomb.yPos
             Image{
                 width:50
                 height:85
-                source:  "Pictures/Ak-Terrorist2.png"
+                source:  "Pictures/Kaboom2.png"
             }
-
-            Rectangle{                  // Schuss links
-                visible: StateQml;
-                color: "yellow";
-                width: 10;
-                height: 20;
-                x:terroristAk.xPos;
-                y:terroristAk.yPos+65;
-            }
-
-            Rectangle{                  // Schuss rechts
-                visible: StateQml;
-                color: "yellow";
-                width: 10;
-                height: 20;
-                x:terroristAk.xPos+40;
-                y:terroristAk.yPos+65;
-
-            }
-
-
             /*SoundEffect{
                 id: GunShotTerrorist
                 source:"Audio/GunshotPlayer.wav"
@@ -52,17 +31,15 @@ Item {
                     GunShotTerrorist.play()
                 }
             }*/
-
             MouseArea{
                 id: mA
                 anchors.fill:parent
                 propagateComposedEvents: true
                 onClicked:{
-                    mainGame.hit(xOrdinateAk,yOrdinateAk)
+                    mainGame.hit(xOrdinateBomb,yOrdinateBomb)
                     //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
                     mouse.accepted = false
                 }
             }
         }
 }
-

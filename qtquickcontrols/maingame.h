@@ -7,7 +7,7 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "akterrorist.h"
-//#include "kaboom.h"
+#include "bombterrorist.h"
 
 
 class MainGame : public QObject
@@ -34,6 +34,7 @@ public slots:
     void populateAkEnemies();
 
     void removeAkEnemy(QObject* akEnemy);
+    void removeBombEnemy(QObject* akEnemy);
 
 private:
 QQmlApplicationEngine* engine;
@@ -43,6 +44,10 @@ QTimer* bewegungsTimer;
 //Test Variabeln:::
 qint32 TestVar1;
 qint8 i;
+
+//Level Steuerung
+qint8 level;
+qint32 levelTimer;
 
 //für for Schleife
 QObject* testObject;
@@ -58,18 +63,8 @@ double trefferY;
 
 QString TestS1;
 QList<QObject*> AkEnemis;
+QList<QObject*> BombEnemis;
 
 };
 
-/*
-class applicationDir : public QObject
-{
-    Q_OBJECT
-public:
-    QString Path;
-
-signals:
-    sendApplicationDir(Qstring Dir);
-};
-*/
 #endif // MAINGAME_H
