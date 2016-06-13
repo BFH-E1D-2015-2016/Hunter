@@ -75,22 +75,31 @@ Rectangle {
          source:"Audio/GunshotPlayer.wav"
      }
      SoundEffect{
-         id: playGunshotAkTerrorist
+         id: playGunshotAkTerrorist         // Dieser Sound wird abgespielt wenn ein AkTerrorist schiesst.
          source:"Audio/GunshotPlayer.wav"
      }
      SoundEffect{
-         id: playAllahAkbar
+         id: playExplosionSound             // Dieser Sound wird abgespielt wenn ein BombenTerrorist explodiert.
+         source:"Audio/Explosion2.wav"
+     }
+     SoundEffect{
+         id: playBottomReachedSound              // Dieser Sound wird abgespielt wenn ein BombenTerrorist den unteren Rand erreicht.
          source:"Audio/AllahAkbar.wav"
      }
-     Connections {                        // Mittels Connections verbinden wir das Signal mit dem Qml "Slot"
-                        target: mainGame   // myclassdata wurde als ContextProperty in main.cpp definiert
-                        onPlayDetonatsSound: {     // ganz wichtig !!! hier muss ein Großbuchstabe stehen sonst funktionierts nicht
-                          playAllahAkbar.play(); // das Label wo Hallo World stand enthält nun den Text von C++
+     Connections {
+                        target: mainGame
+                        onPlayDetonatsSound: {
+                          playExplosionSound.play();
                         }}
-     Connections {                        // Mittels Connections verbinden wir das Signal mit dem Qml "Slot"
-                        target: mainGame   // myclassdata wurde als ContextProperty in main.cpp definiert
-                        onPlayGunSound: {     // ganz wichtig !!! hier muss ein Großbuchstabe stehen sonst funktionierts nicht
-                          playGunshotAkTerrorist.play(); // das Label wo Hallo World stand enthält nun den Text von C++
+     Connections {
+                        target: mainGame
+                        onPlayGunSound: {
+                          playGunshotAkTerrorist.play();
+                        }}
+     Connections {
+                        target: mainGame
+                        onPlayBottomReachedSound: {
+                          playBottomReachedSound.play();
                         }}
 
      /*Rectangle {

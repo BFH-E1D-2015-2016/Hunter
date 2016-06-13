@@ -22,6 +22,7 @@ signals:
     void livesChanged();
     void playDetonatsSound();
     void playGunSound();
+    void playBottomReachedSound();
     void setlabeltext(QString text);
     void treffer(double, double);
 
@@ -30,6 +31,7 @@ public slots:
 
     void shotedDown();
     void detonatedDown();
+    void terroristAtBottom();
 
     void roundElapsed();
     void startGame();

@@ -45,6 +45,7 @@ void BombTerrorist::timerSlot(){
         if(y>400)
         {
             bewegungsform = 3;  //Bewegung gestoppt
+            emit bottomReached();
         }
     }
     emit PosChanged();
@@ -102,8 +103,6 @@ bool BombTerrorist::getVisibel(){
 }
 
 bool BombTerrorist::getTerroristDetonates(){
-    //Funktion gibt zurück, ob Terrorist gerade am schiessen ist.
-    bool State;
     return true;
 }
 
