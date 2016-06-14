@@ -101,6 +101,14 @@ Rectangle {
                         onPlayBottomReachedSound: {
                           playBottomReachedSound.play();
                         }}
+     Connections {
+                        target: mainGame
+                        onGameOver: {
+
+
+                            BasicLogic.showGameOverScreen();
+                        }}
+
 
      /*Rectangle {
          width: animation.width; height: animation.height + 8

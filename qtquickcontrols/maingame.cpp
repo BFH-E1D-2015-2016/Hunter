@@ -35,7 +35,7 @@ void MainGame::startGame(){
 
 void MainGame::hit(double x,double y){
     qDebug() << "hit"<< x << y;
-    score=score+1000;
+    score=score+10;
 
     trefferX = x;
     trefferY = y;
@@ -59,26 +59,39 @@ void MainGame::roundElapsed(){
         engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
     else{
-        live =20;
-        infoString= QStringLiteral("Game over");
+        emit gameOver();
+        infoString = QStringLiteral("Your Score: %1 ").arg(score);
         emit setlabeltext(infoString);
+        //BombEnemis.clear();
+        //AkEnemis.clear();
+        //engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
+        //engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
 }
 void MainGame::terroristAtBottom(){
-    emit playBottomReachedSound();
+    if(live>0){
+       emit playBottomReachedSound();
+    }
+
 }
 
 
 void MainGame::shotedDown(){
-    score=score-10;
-    emit playGunSound();
-    live--;
+    if(live>0){
+        score=score-10;
+        emit playGunSound();
+        live--;
+    }
 }
 
+
 void MainGame::detonatedDown(){
-    score=score-10;
-    emit playDetonatsSound();
-    live--;
+    if(live>0){
+        score=score-10;
+        emit playDetonatsSound();
+        live--;
+    }
+
 }
 
 void MainGame::populateAkEnemies(){
