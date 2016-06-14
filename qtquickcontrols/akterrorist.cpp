@@ -101,7 +101,7 @@ void AkTerrorist::timerSlot(){
     //AkTerrorist: Schiessen beim nach vorne laufen
 
 
-    if(((x>150&&x<170)||(x>340&&x<410))&&liveLevel!=0&&TerroristTyp == TerroristAk)    //AkTerrorist Befindet sich nicht hinter einer Deckung und lebt noch.
+    if( (((x>150&&x<170)||(x>340&&x<410)) || ((y!=100)&&(y!=200)) )&&liveLevel!=0&&TerroristTyp == TerroristAk)    //AkTerrorist Befindet sich nicht hinter einer Deckung und lebt noch.
     {if(shootTime<200){
            shootTime++;
 

@@ -52,6 +52,11 @@ Rectangle {
            }
 
    }
+    MouseArea{
+        anchors.fill:parent
+        onClicked: {
+            BasicLogic.showStartScreen();}
+    }
+ }
 
-}
 

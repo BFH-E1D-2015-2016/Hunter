@@ -28,6 +28,10 @@ MainGame::MainGame(QObject *parent) : QObject(parent)
 }
 
 void MainGame::startGame(){
+    gameOverSended=false;
+    live = 10;
+    score = 0;
+    TestVar1 = 0;
     qDebug() << " Game started. ";
     roundTimer->start();
     bewegungsTimer->start();
@@ -59,13 +63,17 @@ void MainGame::roundElapsed(){
         engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
     else{
-        emit gameOver();
+
+        if (gameOverSended==false){
+            gameOverSended=true;
+            emit gameOver();
+        }
         infoString = QStringLiteral("Your Score: %1 ").arg(score);
         emit setlabeltext(infoString);
-        //BombEnemis.clear();
-        //AkEnemis.clear();
-        //engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
-        //engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
+        BombEnemis.clear();
+        AkEnemis.clear();
+        engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
+        engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
 }
 void MainGame::terroristAtBottom(){

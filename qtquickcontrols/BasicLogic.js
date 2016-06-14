@@ -11,3 +11,8 @@ function showGameOverScreen() {
     gameOverScreen.visible=true;
 }
 
+function showStartScreen() {
+    startScreen.visible=true;
+    gameScreen.visible=false;
+    gameOverScreen.visible=false;
+}
