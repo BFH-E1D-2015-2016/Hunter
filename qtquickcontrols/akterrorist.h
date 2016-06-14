@@ -44,6 +44,7 @@ signals:
 public slots:
     void timerSlot();   // Spielzeit Runde
     void shotedCheck(double, double);   // Wurde getroffen
+    void destroyTerrorist();
 
 private:
     // TerroristTyp

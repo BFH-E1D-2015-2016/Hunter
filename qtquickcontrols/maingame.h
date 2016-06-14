@@ -46,7 +46,7 @@ private:
 QQmlApplicationEngine* engine;
 QTimer* roundTimer;
 QTimer* bewegungsTimer;
-bool gameOverSended = false;
+bool gameOverSended;
 
 //Test Variabeln:::
 qint32 TestVar1;

@@ -26,6 +26,7 @@ AkTerrorist::AkTerrorist (QObject *parent) : QObject(parent){
     visableTime = 2;
     TerroristFire = 0;
 
+
     //Bewegungen
     speed=1;    // Geschwindikeit der Bewegung
 }
@@ -140,7 +141,11 @@ void AkTerrorist::shotedCheck(double PosX, double PosY){
        bewegungsform = 3;   // nicht mehr weiterlaufen
     }
 
-    }
+}
+void AkTerrorist::destroyTerrorist(){
+    liveLevel = 0;  // Tot einstellen
+}
+
 
 double AkTerrorist::getX(){
     return x;

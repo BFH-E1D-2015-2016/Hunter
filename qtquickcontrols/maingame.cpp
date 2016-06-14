@@ -6,6 +6,8 @@ MainGame::MainGame(QObject *parent) : QObject(parent)
     score = 0;
     live = 10;
 
+    gameOverSended=false;
+
     //Level Steuerung
     level = 1;          // In
     levelTimer = 1000;  // In 10ms
@@ -70,10 +72,6 @@ void MainGame::roundElapsed(){
         }
         infoString = QStringLiteral("Your Score: %1 ").arg(score);
         emit setlabeltext(infoString);
-        BombEnemis.clear();
-        AkEnemis.clear();
-        engine->rootContext()->setContextProperty("akEnemy", QVariant::fromValue(AkEnemis));
-        engine->rootContext()->setContextProperty("bombEnemy", QVariant::fromValue(BombEnemis));
     }
 }
 void MainGame::terroristAtBottom(){
@@ -112,6 +110,7 @@ if((AmoutOfEnemies<9)&&(Random==1)){
         connect(akEnemy,SIGNAL(fireAShot()),this,SLOT(shotedDown()));
         connect(this,SIGNAL(treffer(double,double)),akEnemy,SLOT(shotedCheck(double, double)));
         connect(akEnemy,SIGNAL(deathMan(QObject*)),this,SLOT(removeAkEnemy(QObject*)));
+        connect(this,SIGNAL(gameOver()),akEnemy,SLOT(destroyTerrorist()));
 
         AkEnemis.append(akEnemy);
 }
