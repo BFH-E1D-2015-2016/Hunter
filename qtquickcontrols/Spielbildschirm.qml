@@ -76,7 +76,7 @@ Rectangle {
      }
      SoundEffect{
          id: playGunshotAkTerrorist         // Dieser Sound wird abgespielt wenn ein AkTerrorist schiesst.
-         source:"Audio/GunshotPlayer.wav"
+         source:"Audio/GunShot_AkTerrorist_cut.wav"
      }
      SoundEffect{
          id: playExplosionSound             // Dieser Sound wird abgespielt wenn ein BombenTerrorist explodiert.
