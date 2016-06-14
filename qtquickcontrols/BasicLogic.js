@@ -2,12 +2,12 @@ function showGameScreen() {
     console.log('Showing GameScreen now.');
     startScreen.visible=false;
     gameScreen.visible=true;
-    //endScreen.visible=false;
+    gameOverScreen.visible=false;
 }
 
-/*function showStartScreen() {
-    startScreen.visible=true;
+function showGameOverScreen() {
+    startScreen.visible=false;
     gameScreen.visible=false;
-    //endScreen.visible=false;
-}*/
+    gameOverScreen.visible=true;
+}
 

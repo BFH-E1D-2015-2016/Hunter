@@ -23,4 +23,9 @@ ApplicationWindow {
         id: gameScreen
         visible: false
     }
+    SpielBeendet{
+        id: gameOverScreen
+        visible: false
+
+    }
  }

@@ -25,6 +25,7 @@ signals:
     void playBottomReachedSound();
     void setlabeltext(QString text);
     void treffer(double, double);
+    void gameOver();
 
 public slots:
     void hit(double x,double y);
