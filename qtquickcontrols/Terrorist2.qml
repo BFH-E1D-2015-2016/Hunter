@@ -39,8 +39,9 @@ Item {
                 propagateComposedEvents: true
                 onClicked:{
 
+                    playBottomReachedSound.stop()
                     mainGame.hit(xOrdinateBomb,yOrdinateBomb)
-                    //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
+                    //console.log("AkTerrorist was shot!" + xOrdinate + yOrdinate);
                     mouse.accepted = false
                 }
             }
