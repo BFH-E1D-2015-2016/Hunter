@@ -32,7 +32,8 @@ public:
 signals:
     void PosChanged();
 
-    void detonates(); // Explotie
+    void detonates(); // Explodiert
+    void bottomReached(); //Unterer Rand erreicht
     void deathMan(QObject*);      // Gestorben
 
 public slots:

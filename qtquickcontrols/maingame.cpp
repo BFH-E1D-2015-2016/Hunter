@@ -63,11 +63,21 @@ void MainGame::roundElapsed(){
         infoString= QStringLiteral("Game over");
         emit setlabeltext(infoString);
     }
-    }
+}
+void MainGame::terroristAtBottom(){
+    emit playBottomReachedSound();
+}
 
 
 void MainGame::shotedDown(){
     score=score-10;
+    emit playGunSound();
+    live--;
+}
+
+void MainGame::detonatedDown(){
+    score=score-10;
+    emit playDetonatsSound();
     live--;
 }
 
@@ -88,9 +98,10 @@ if((AmoutOfEnemies<9)&&(Random==0)){
         BombTerrorist * bombEnemy = new BombTerrorist(this);
 
         connect(bewegungsTimer,SIGNAL(timeout()),bombEnemy,SLOT(timerSlot()));
-        connect(bombEnemy,SIGNAL(detonates()),this,SLOT(shotedDown()));
+        connect(bombEnemy,SIGNAL(detonates()),this,SLOT(detonatedDown()));
         connect(this,SIGNAL(treffer(double,double)),bombEnemy,SLOT(shotedCheck(double, double)));
         connect(bombEnemy,SIGNAL(deathMan(QObject*)),this,SLOT(removeBombEnemy(QObject*)));
+        connect(bombEnemy,SIGNAL(bottomReached()),this,SLOT(terroristAtBottom()));
 
         BombEnemis.append(bombEnemy);
 }

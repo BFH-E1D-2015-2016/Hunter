@@ -74,6 +74,50 @@ Rectangle {
          id: playGunshot1
          source:"Audio/GunshotPlayer.wav"
      }
+     SoundEffect{
+         id: playGunshotAkTerrorist         // Dieser Sound wird abgespielt wenn ein AkTerrorist schiesst.
+         source:"Audio/GunshotPlayer.wav"
+     }
+     SoundEffect{
+         id: playExplosionSound             // Dieser Sound wird abgespielt wenn ein BombenTerrorist explodiert.
+         source:"Audio/Explosion2.wav"
+     }
+     SoundEffect{
+         id: playBottomReachedSound              // Dieser Sound wird abgespielt wenn ein BombenTerrorist den unteren Rand erreicht.
+         source:"Audio/AllahAkbar.wav"
+     }
+     Connections {
+                        target: mainGame
+                        onPlayDetonatsSound: {
+                          playExplosionSound.play();
+                        }}
+     Connections {
+                        target: mainGame
+                        onPlayGunSound: {
+                          playGunshotAkTerrorist.play();
+                        }}
+     Connections {
+                        target: mainGame
+                        onPlayBottomReachedSound: {
+                          playBottomReachedSound.play();
+                        }}
+
+     /*Rectangle {
+         width: animation.width; height: animation.height + 8
+
+         AnimatedImage { id: animation; source: "Pictures/explosion.gif" }
+
+         Rectangle {
+             property int frames: animation.frameCount
+
+             width: 4; height: 8
+             x: (animation.width - width) * animation.currentFrame / frames
+             y: animation.height
+             color: "red"
+         }
+     }*/
+
+
 
      property int aNumber: 0
 
