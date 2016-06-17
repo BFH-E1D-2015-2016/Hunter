@@ -87,9 +87,11 @@ Rectangle {
             }
 
         }
+
+        //Backgroundmusic
         Audio{
             id:playMusic
-            source: "Audio/mainpagemusic.wma"
+            source: "Audio/mainpagemusic.wav"
             autoLoad: true
             autoPlay: true
             loops: Audio.Infinite

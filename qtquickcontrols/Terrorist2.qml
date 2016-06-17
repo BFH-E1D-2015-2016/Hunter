@@ -25,14 +25,6 @@ Item {
                 height:85
                 source:  "Pictures/Kaboom2.png"
             }
-            /*SoundEffect{
-                id: GunShotTerrorist
-                source:"Audio/GunshotPlayer.wav"
-                if(StateQml === true)
-                {
-                    GunShotTerrorist.play()
-                }
-            }*/
             MouseArea{
                 id: mA
                 anchors.fill:parent
@@ -41,7 +33,6 @@ Item {
 
                     playBottomReachedSound.stop()
                     mainGame.hit(xOrdinateBomb,yOrdinateBomb)
-                    //console.log("AkTerrorist was shot!" + xOrdinate + yOrdinate);
                     mouse.accepted = false
                 }
             }

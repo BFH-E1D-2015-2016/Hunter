@@ -3,7 +3,7 @@
 
 //AkTerrorist::AkTerrorist()
 
-//Konstruktor
+///Konstruktor
 AkTerrorist::AkTerrorist (QObject *parent) : QObject(parent){
     x = (int) qrand() % (int) 3; // Zufallszahl bis 2
     if(x==0){x=0;y = yHolzdeckung;bewegungsform=goRigth;}         // Hinter Holzdeckung auftauchen
@@ -61,7 +61,7 @@ void AkTerrorist::timerSlot(){
     }
     emit PosChanged();
 
-    // Timer für Sichtbarikeit des Schusses ween Terrorist Schiesst
+    /// Timer für Sichtbarikeit des Schusses ween Terrorist Schiesst
     if(TerroristFire>0){
         TerroristFire--;
     }
@@ -97,8 +97,9 @@ void AkTerrorist::timerSlot(){
         }
 }
 
+///Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
 void AkTerrorist::shotedCheck(double PosX, double PosY){
-    //Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
+
     if(((PosX==x)&&(PosY==y))&&(liveLevel!=0)){
        qDebug() << this << "wurde getroffen";
        liveLevel = 0;       // Tot einstellen
@@ -108,39 +109,43 @@ void AkTerrorist::shotedCheck(double PosX, double PosY){
     }
 
 }
+
+///Diese Funktion ist der Slot der von mainGame verwwendet wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
 void AkTerrorist::destroyTerrorist(){
-    //Diese Funktion ist der Slot der von mainGame verwwendet wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
+
     liveLevel = 0;  // Tot einstellen
 }
 
-
+/*! Diese Funktion gibt einfach den
+ *X Wert der Koordinate des jeweiligen
+ *C++ Objektes zurück, der dann beim jeweiligen
+ *QML Objekt geändert wird. -> Signal zum QML Objekt*/
 double AkTerrorist::getX(){
-    /*Diese Funktion gibt einfach den
-     *X Wert der Koordinate des jeweiligen
-     *C++ Objektes zurück, der dann beim jeweiligen
-     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
+
     return x;
 }
-
+/*! Diese Funktion gibt einfach den
+ *Y Wert der Koordinate des jeweiligen
+ *C++ Objektes zurück, der dann beim jeweiligen
+ *QML Objekt geändert wird. -> Signal zum QML Objekt*/
 double AkTerrorist::getY(){
-    /*Diese Funktion gibt einfach den
-     *Y Wert der Koordinate des jeweiligen
-     *C++ Objektes zurück, der dann beim jeweiligen
-     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
+
     return y;
 
 }
 
+/*! Diese Funktion gibt an ob der Terrorist sichtbar
+ *oder unsichtbar ist. Diese wird verwendet um
+ *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
 bool AkTerrorist::getVisibel(){
-    /*Diese Funktion gibt an ob der Terrorist sichtbar
-     *oder unsichtbar ist. Diese wird verwendet um
-     *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
+
 
     return visibel;
 }
 
+///Funktion gibt zurück, ob Terrorist gerade am schiessen ist.-> Signal zum QML Objekt
 bool AkTerrorist::getTerroristFire(){
-    //Funktion gibt zurück, ob Terrorist gerade am schiessen ist.-> Signal zum QML Objekt
+
     bool State;
     if(TerroristFire == 0)
         {State = false;}
@@ -150,10 +155,10 @@ bool AkTerrorist::getTerroristFire(){
 }
 
 
-
+///Destruktor
 AkTerrorist::~AkTerrorist()
 {
-    //Destruktor
+
 }
 
 

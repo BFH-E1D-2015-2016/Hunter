@@ -20,7 +20,6 @@ DISTFILES += \
     HolzDeckung.qml \
     main.qml \
     MauerDeckung.qml \
-    Reserve.qml \
     Spielbildschirm.qml \
     Startbildschirm.qml \
     SteinDeckung.qml \

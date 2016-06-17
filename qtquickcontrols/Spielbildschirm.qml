@@ -109,25 +109,8 @@ Rectangle {
                             BasicLogic.showGameOverScreen();
                         }}
 
-
-     /*Rectangle {
-         width: animation.width; height: animation.height + 8
-
-         AnimatedImage { id: animation; source: "Pictures/explosion.gif" }
-
-         Rectangle {
-             property int frames: animation.frameCount
-
-             width: 4; height: 8
-             x: (animation.width - width) * animation.currentFrame / frames
-             y: animation.height
-             color: "red"
-         }
-     }*/
-
-
-
-     property int aNumber: 0
+    //Soundeffekt wenn der Player schiesst
+     property int aNumber: 0    //Variable für abwechselndes Soundeffektplayback bei Schussabgabe
 
      MouseArea{
          propagateComposedEvents: true

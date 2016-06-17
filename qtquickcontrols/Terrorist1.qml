@@ -40,18 +40,7 @@ Item {
                 height: 20;
                 x:terroristAk.xPos+40;
                 y:terroristAk.yPos+65;
-
             }
-
-
-            /*SoundEffect{
-                id: GunShotTerrorist
-                source:"Audio/GunshotPlayer.wav"
-                if(StateQml === true)
-                {
-                    GunShotTerrorist.play()
-                }
-            }*/
 
             MouseArea{
                 id: mA
@@ -59,7 +48,6 @@ Item {
                 propagateComposedEvents: true
                 onClicked:{
                     mainGame.hit(xOrdinateAk,yOrdinateAk)
-                    //console.log("AkTerrorist was shoted!" + xOrdinate + yOrdinate);
                     mouse.accepted = false
                 }
             }

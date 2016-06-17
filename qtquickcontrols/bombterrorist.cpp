@@ -1,6 +1,6 @@
 #include "bombterrorist.h"
 
-//Konstruktor
+///Konstruktor
 BombTerrorist::BombTerrorist (QObject *parent) : QObject(parent){
     // Anfangsposition
     x = (int) qrand() % (int) 3; // Zufallszahl bis 2
@@ -91,8 +91,9 @@ void BombTerrorist::timerSlot(){
 
 }
 
+///Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
 void BombTerrorist::shotedCheck(double PosX, double PosY){
-    //Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
+
     if(((PosX==x)&&(PosY==y))&&(liveLevel!=0)){
        qDebug() << this << "wurde getroffen";
        liveLevel = 0;       // Tot einstellen
@@ -103,44 +104,50 @@ void BombTerrorist::shotedCheck(double PosX, double PosY){
 
 }
 
+/*!
+ * Diese Funktion ist der Slot der von mainGame verwwendet
+ * wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
+ */
 void BombTerrorist::destroyTerrorist(){
-    //Diese Funktion ist der Slot der von mainGame verwwendet
-    //wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
     liveLevel = 0;  // Tot einstellen
 }
 
+/*! Diese Funktion gibt einfach den
+ *Y Wert der Koordinate des jeweiligen
+ *C++ Objektes zurück, der dann beim jeweiligen
+ *QML Objekt geändert wird. -> Signal zum QML Objekt*/
 double BombTerrorist::getX(){
-    /*Diese Funktion gibt einfach den
-     *Y Wert der Koordinate des jeweiligen
-     *C++ Objektes zurück, der dann beim jeweiligen
-     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
+
     return x;
 }
 
+/*! Diese Funktion gibt einfach den
+ *Y Wert der Koordinate des jeweiligen
+ *C++ Objektes zurück, der dann beim jeweiligen
+ *QML Objekt geändert wird. -> Signal zum QML Objekt*/
 double BombTerrorist::getY(){
-    /*Diese Funktion gibt einfach den
-     *Y Wert der Koordinate des jeweiligen
-     *C++ Objektes zurück, der dann beim jeweiligen
-     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
+
     return y;
 
 }
 
+/*! Diese Funktion gibt an ob der Terrorist sichtbar
+ *oder unsichtbar ist. Diese wird verwendet um
+ *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
 bool BombTerrorist::getVisibel(){
-    /*Diese Funktion gibt an ob der Terrorist sichtbar
-     *oder unsichtbar ist. Diese wird verwendet um
-     *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
+
     return visibel;
 }
 
+/*! Diese Funktion gibt an ob der explodiert. Diese Funktion sollte eine Animation
+ * im QML starten die eine Explosion darstellt wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
 bool BombTerrorist::getTerroristDetonates(){
-    /*Diese Funktion gibt an ob der explodiert. Diese Funktion sollte eine Animation
-     * im QML starten die eine Explosion darstellt wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
+
     return true;
 }
 
-
+/// Destruktor
 BombTerrorist::~BombTerrorist()
 {
-    //Destruktor
+
 }

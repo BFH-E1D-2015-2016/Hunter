@@ -45,32 +45,32 @@ public:
 /* Signale die von AkTerrorist gesendet werden*/
 signals:
 
-    void PosChanged();              // Signal zum Updaten von QML
-    void detonates();               // Signal das der Terrorist explodiert ist -> Slot: mainGame (Leben abziehen)
-    void bottomReached();           // Unterer Rand erreicht
-    void deathMan(QObject*);        // Signal das der Terrorist gestorben ist -> Slot: mainGame(Objekt vernichten)
+    void PosChanged();              ///< Signal zum Updaten von QML
+    void detonates();               ///< Signal das der Terrorist explodiert ist -> Slot: mainGame (Leben abziehen)
+    void bottomReached();           ///< Unterer Rand erreicht
+    void deathMan(QObject*);        ///< Signal das der Terrorist gestorben ist -> Slot: mainGame(Objekt vernichten)
 
 /*Öffentliche Slots*/
 public slots:
 
-    void timerSlot();                   // Slot für Bewegungs und Selbstexplosions Timer
-    void shotedCheck(double, double);   // mit den übergebenen Koordinaten überprüfen ob Terrorist getroffen wurde.
-    void destroyTerrorist();            // manuelles Zestörenen des Terroristen (Wenn Spiel zuende)
+    void timerSlot();                   ///< Slot für Bewegungs und Selbstexplosions Timer
+    void shotedCheck(double, double);   ///< mit den übergebenen Koordinaten überprüfen ob Terrorist getroffen wurde.
+    void destroyTerrorist();            ///< manuelles Zestörenen des Terroristen (Wenn Spiel zuende)
 
 private:
 /* Variabeln der Klasse BombTerrorist*/
 
     // Für Bewegung
-    double speed;       // Bewegungsgeschwindikeit
+    double speed;       ///< Bewegungsgeschwindikeit
     char bewegungsform;
 
     //Für Bombe
-    int bombTime;           // timer für die Selbstexplosion des Terroristten
+    int bombTime;           ///< timer für die Selbstexplosion des Terroristten
 
     // Gibt an ob Terrorist lebt oder Tot ist.
-    bool liveLevel;         // Gibt an ob Terrorist lebt oder tot ist
-    bool visibel;           //lässt Terroristen blicken wenn tot;
-    double visableTime;     // Timer für Dauer des strobo.
+    bool liveLevel;         ///< Gibt an ob Terrorist lebt oder tot ist
+    bool visibel;           ///<lässt Terroristen blicken wenn tot;
+    double visableTime;     ///< Timer für Dauer des strobo.
 
 
 };

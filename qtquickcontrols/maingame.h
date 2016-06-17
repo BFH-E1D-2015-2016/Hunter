@@ -65,11 +65,11 @@ QObject* testObject;
 //Score and live
 qint32 score;
 qint32 live;
-QString infoString;
+QString infoString; ///< String für die Informationen auf Spielbildschirm
 
-//Trefferpositon
-double trefferX;
-double trefferY;
+
+double trefferX;    ///< Trefferposition X
+double trefferY;    ///< Trefferposition Y
 
 QString TestS1;
 QList<QObject*> AkEnemis;
