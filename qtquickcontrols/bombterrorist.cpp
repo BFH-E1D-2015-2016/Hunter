@@ -4,9 +4,9 @@
 BombTerrorist::BombTerrorist (QObject *parent) : QObject(parent){
     // Anfangsposition
     x = (int) qrand() % (int) 3; // Zufallszahl bis 2
-    if(x==0){x=0;y = 150;bewegungsform=0;}         // Hinter Holzdeckung auftauchen
-    else if(x==1){x=240;y = 250;bewegungsform=(int) qrand() % (int) 2;}// Hinter Mauerdeckung auftauchen BEWEGUNGSRICHTUNG
-    else if(x==2){x=480;y = 150;bewegungsform=1;}// Hinter Steindeckung auftauchen
+    if(x==0){x=0;y = yHolzdeckung;bewegungsform=goRigth;}         // Hinter Holzdeckung auftauchen
+    else if(x==1){x=240;y = yMauerdeckung;bewegungsform=((int) qrand() % (int) 2)+2;}// Hinter Mauerdeckung auftauchen BEWEGUNGSRICHTUNG
+    else if(x==2){x=480;y = ySteindeckung;bewegungsform=goLeft;}// Hinter Steindeckung auftauchen
     // Weitere Anfangszusände
     liveLevel= 1;
     visibel = true;
@@ -20,33 +20,47 @@ BombTerrorist::BombTerrorist (QObject *parent) : QObject(parent){
 
 void BombTerrorist::timerSlot(){
 // BEWGUNGEN
-    // nach rechts gehen
-    if (bewegungsform == 0)     // Bewegt sich aus der Deckung
-    {
-        x=x+speed;
-        if((x>150&&x<170)||(x>340&&x<360))
-        {
-            bewegungsform = 2;  // Bewegung  nach vorne wechseln
-        }
-    }
-    //nach links gehen
-    if (bewegungsform == 1)     // Bewegt sich aus der Deckung
-    {
-        x=x-speed;
-        if((x>150&&x<170)||(x>340&&x<410))
-        {
-            bewegungsform = 2;  // Bewegung  nach vorne wechseln
-        }
-    }
-    //nach vorne gehen
-    else if (bewegungsform == 2)
-    {
-        y=y+speed;
-        if(y>400)
-        {
-            bewegungsform = 3;  //Bewegung gestoppt
-            emit bottomReached();
-        }
+    switch(bewegungsform) {
+        case goRigth:
+            x=x+speed;
+            // Wenn sich Terrorist aus der Deckung bewegt soll er bei einer best. Pos. nach vorne gehen,
+            if(((x>150&&x<170)||(x>340&&x<360))&&((y==yHolzdeckung)||(y==ySteindeckung)||(y==yMauerdeckung)))
+            {
+                bewegungsform = goToFront;  // Bewegung  nach vorne wechseln
+            }
+            // Beim Rechten Anschlag wieder nach links gehen
+            else if(x>rechterAnschlag)
+            {
+                bewegungsform = goLeft; // Wieder nach links gehen
+            }
+
+        break;
+        case goLeft:
+            x=x-speed;
+            // Wenn sich Terrorist aus der Deckung bewegt soll er bei einer best. Pos. nach vorne gehen,
+            if(((x>150&&x<170)||(x>340&&x<410))&&((y==yHolzdeckung)||(y==ySteindeckung)||(y==yMauerdeckung)))
+            {
+                bewegungsform = goToFront;  // Bewegung  nach vorne wechseln
+            }
+            else if(x<linkerAnschlag)
+            {
+                bewegungsform = goLeft; // Wieder nach links gehen
+            }
+        break;
+        case goToFront:
+            y=y+speed;
+            if(y>400)
+            {
+                bewegungsform = goStopp; // Zufallszahl von 2 bis 3
+                emit bottomReached();
+            }
+        break;
+        case goStopp:
+            ;
+        break;
+        default:
+            bewegungsform= goStopp;
+        break;
     }
     emit PosChanged();
 
@@ -78,36 +92,55 @@ void BombTerrorist::timerSlot(){
 }
 
 void BombTerrorist::shotedCheck(double PosX, double PosY){
-
+    //Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
     if(((PosX==x)&&(PosY==y))&&(liveLevel!=0)){
        qDebug() << this << "wurde getroffen";
        liveLevel = 0;       // Tot einstellen
        visibel = false;
        visableTime = 100; // 1 sek strobo. bei Timer 10ms
-       bewegungsform = 3;   // nicht mehr weiterlaufen
+       bewegungsform = goStopp;   // nicht mehr weiterlaufen
     }
 
 }
 
+void BombTerrorist::destroyTerrorist(){
+    //Diese Funktion ist der Slot der von mainGame verwwendet
+    //wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
+    liveLevel = 0;  // Tot einstellen
+}
+
 double BombTerrorist::getX(){
+    /*Diese Funktion gibt einfach den
+     *Y Wert der Koordinate des jeweiligen
+     *C++ Objektes zurück, der dann beim jeweiligen
+     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
     return x;
 }
 
 double BombTerrorist::getY(){
+    /*Diese Funktion gibt einfach den
+     *Y Wert der Koordinate des jeweiligen
+     *C++ Objektes zurück, der dann beim jeweiligen
+     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
     return y;
 
 }
 
 bool BombTerrorist::getVisibel(){
+    /*Diese Funktion gibt an ob der Terrorist sichtbar
+     *oder unsichtbar ist. Diese wird verwendet um
+     *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
     return visibel;
 }
 
 bool BombTerrorist::getTerroristDetonates(){
+    /*Diese Funktion gibt an ob der explodiert. Diese Funktion sollte eine Animation
+     * im QML starten die eine Explosion darstellt wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
     return true;
 }
 
 
 BombTerrorist::~BombTerrorist()
 {
-    //qDebug() << "Terrorist dead!!!";
+    //Destruktor
 }

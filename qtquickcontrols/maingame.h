@@ -1,6 +1,8 @@
 #ifndef MAINGAME_H
 #define MAINGAME_H
 
+#define Anfangsleben           10
+
 #include <QObject>
 #include <QTimer>
 #include <QDebug>
@@ -35,6 +37,7 @@ public slots:
     void terroristAtBottom();
 
     void roundElapsed();
+    void infoUpdate();
     void startGame();
 
     void populateAkEnemies();
@@ -46,10 +49,10 @@ private:
 QQmlApplicationEngine* engine;
 QTimer* roundTimer;
 QTimer* bewegungsTimer;
-bool gameOverSended;
+//bool gameOverSended;
 
 //Test Variabeln:::
-qint32 TestVar1;
+qint32 roundCounter;
 qint8 i;
 
 //Level Steuerung

@@ -1,11 +1,4 @@
 #include "akterrorist.h"
-#define TerroristAk 0
-#define TerroristBombe 1
-#define FirstRigth      0
-#define FirstLeft       1
-#define ToFront         2
-#define Rigth           4
-#define Left            5
 
 
 //AkTerrorist::AkTerrorist()
@@ -13,103 +6,76 @@
 //Konstruktor
 AkTerrorist::AkTerrorist (QObject *parent) : QObject(parent){
     x = (int) qrand() % (int) 3; // Zufallszahl bis 2
-    if(x==0){x=0;y = 150;bewegungsform=0;}         // Hinter Holzdeckung auftauchen
-    else if(x==1){x=240;y = 250;bewegungsform=(int) qrand() % (int) 2;}// Hinter Mauerdeckung auftauchen BEWEGUNGSRICHTUNG
-    else if(x==2){x=480;y = 150;bewegungsform=1;}// Hinter Steindeckung auftauchen
-    //qDebug() << " X = " << x;
-    //qDebug() << " Y = " << y;
-    TerroristTyp = TerroristAk;//(int) qrand() % (int) 2; // Zufallszahl bis 1
+    if(x==0){x=0;y = yHolzdeckung;bewegungsform=goRigth;}         // Hinter Holzdeckung auftauchen
+    else if(x==1){x=240;y = yMauerdeckung;bewegungsform=((int) qrand() % (int) 2)+2;}// Hinter Mauerdeckung auftauchen BEWEGUNGSRICHTUNG
+    else if(x==2){x=480;y = ySteindeckung;bewegungsform=goLeft;}// Hinter Steindeckung auftauchen
     liveLevel= 1;
     visibel = true;
-    shootTime = 0;
-    bombTime = 100;
-    visableTime = 2;
-    TerroristFire = 0;
-
-
-    //Bewegungen
-    speed=1;    // Geschwindikeit der Bewegung
+    shootTime = 0;         
+    visableTime = 0;        // Sichtbarikeitstimer
+    TerroristFire = 0;      // Selbstschusstimer auf 0 setzen
+    speed=1;                // Geschwindikeit der Bewegung
 }
 
 void AkTerrorist::timerSlot(){
+
+
+    // Bewegung
+    switch(bewegungsform) {
+        case goRigth:
+            x=x+speed;
+            // Wenn sich Terrorist aus der Deckung bewegt soll er bei einer best. Pos. nach vorne gehen,
+            if(((x>150&&x<170)||(x>340&&x<360))&&((y==yHolzdeckung)||(y==ySteindeckung)||(y==yMauerdeckung)))
+            {
+                bewegungsform = goToFront;  // Bewegung  nach vorne wechseln
+            }
+            // Beim Rechten Anschlag wieder nach links gehen
+            else if((x>rechterAnschlag)&&((y!=yHolzdeckung)||(y!=ySteindeckung)||(y!=yMauerdeckung)))
+            {
+                bewegungsform = goLeft; // Wieder nach links gehen
+            }
+
+        break;
+        case goLeft:
+            x=x-speed;
+            // Wenn sich Terrorist aus der Deckung bewegt soll er bei einer best. Pos. nach vorne gehen,
+            if(((x>150&&x<170)||(x>340&&x<410))&&((y==yHolzdeckung)||(y==ySteindeckung)||(y==yMauerdeckung)))
+            {
+                bewegungsform = goToFront;  // Bewegung  nach vorne wechseln
+            }
+            else if((x<linkerAnschlag)&&((y!=yHolzdeckung)||(y!=ySteindeckung)||(y!=yMauerdeckung)))
+            {
+                bewegungsform = goRigth; // Wieder nach rechts gehen
+            }
+        break;
+        case goToFront:
+            y=y+speed;
+            if(y>400)
+            {
+                bewegungsform = (((int) qrand() % (int) 2)+2); // Zufallszahl von 2 bis 3
+            }
+        break;
+        default:
+            bewegungsform= goStopp;
+        break;
+    }
+    emit PosChanged();
+
     // Timer für Sichtbarikeit des Schusses ween Terrorist Schiesst
     if(TerroristFire>0){
         TerroristFire--;
     }
 
-    //BombenTerrorist: Explodiert sobald Timer abgelaufen ist
-    if((y>400)&&liveLevel!=0&&TerroristTyp == TerroristBombe){
-        //Allbak rufen
-        //Timer starten bis zur zestörung
-        if(bombTime > 0){
-            bombTime--;
-        }
-        else{
-            //BOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOM
-            qDebug() << this << "explodiert";
-            liveLevel = 0;       // Tot einstellen
-            // Concetion zu maingmae um leben abzuziehen
-            visibel = false;
-            visableTime = 100; // 1 sek strobo. bei Timer 10ms
-        }
-    }
-
-    // Zuerst nach rechts gehen
-    if (bewegungsform == 0)     // Bewegt sich aus der Deckung
-    {
-        x=x+speed;
-        if((x>150&&x<170)||(x>340&&x<360))
-        {
-            bewegungsform = 2;  // Bewegung  nach vorne wechseln
-        }
-    }
-    // Zuerst nach links gehen
-    if (bewegungsform == 1)     // Bewegt sich aus der Deckung
-    {
-        x=x-speed;
-        if((x>150&&x<170)||(x>340&&x<410))
-        {
-            bewegungsform = 2;  // Bewegung  nach vorne wechseln
-        }
-    }
-    //nach vorne gehen
-    else if (bewegungsform == 2)
-    {
-        y=y+speed;
-        if(y>400)
-        {
-            bewegungsform = (((int) qrand() % (int) 2)+4); // Zufallszahl von 4 bis 5
-        }
-    }
-    else if (bewegungsform == 4)    // Weiter nach rechts gehen
-    {
-        x=x+speed;
-        if(x>500)
-        {
-            bewegungsform = 5; // Wieder nach links gehen
-        }
-    }
-    else if (bewegungsform == 5)    // Weiter nach rechts gehen
-    {
-        x=x-speed;
-        if(x<20)
-        {
-            bewegungsform = 4; // Wieder nach rechts gehen
-        }
-    }
-    emit PosChanged();
-
     //AkTerrorist: Schiessen beim nach vorne laufen
 
 
-    if( (((x>150&&x<170)||(x>340&&x<410)) || ((y!=100)&&(y!=200)) )&&liveLevel!=0&&TerroristTyp == TerroristAk)    //AkTerrorist Befindet sich nicht hinter einer Deckung und lebt noch.
-    {if(shootTime<200){
+    if( (((x>150&&x<170)||(x>340&&x<410)) || ((y!=150)&&(y!=250)) )&&liveLevel!=0)    //Schiesstimer läuft nur wenn sicch der Terrorist nicht  hinter einer Deckung befindet.
+    {if(shootTime<200){     //Zählen bis 199 -> 2Sek. S
            shootTime++;
-
         }
      else {
             emit fireAShot();
-            qDebug()<<"shot fired";
+            qDebug()<<"shot fired from"  << (this);
             shootTime=0;
             TerroristFire = 10; // Timer für Bild mit Feuer
         }
@@ -132,36 +98,49 @@ void AkTerrorist::timerSlot(){
 }
 
 void AkTerrorist::shotedCheck(double PosX, double PosY){
-
+    //Diese Funktion ist der Slot zum Signal hit im MainGame und überprüft ob, der Terrorist getroffen wurde.
     if(((PosX==x)&&(PosY==y))&&(liveLevel!=0)){
        qDebug() << this << "wurde getroffen";
        liveLevel = 0;       // Tot einstellen
        visibel = false;
        visableTime = 100; // 1 sek strobo. bei Timer 10ms
-       bewegungsform = 3;   // nicht mehr weiterlaufen
+       bewegungsform = goStopp;   // nicht mehr weiterlaufen
     }
 
 }
 void AkTerrorist::destroyTerrorist(){
+    //Diese Funktion ist der Slot der von mainGame verwwendet wird, um den Terroristen "manuell" zu zestöre, wenn dieser stribt.
     liveLevel = 0;  // Tot einstellen
 }
 
 
 double AkTerrorist::getX(){
+    /*Diese Funktion gibt einfach den
+     *X Wert der Koordinate des jeweiligen
+     *C++ Objektes zurück, der dann beim jeweiligen
+     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
     return x;
 }
 
 double AkTerrorist::getY(){
+    /*Diese Funktion gibt einfach den
+     *Y Wert der Koordinate des jeweiligen
+     *C++ Objektes zurück, der dann beim jeweiligen
+     *QML Objekt geändert wird. -> Signal zum QML Objekt*/
     return y;
 
 }
 
 bool AkTerrorist::getVisibel(){
+    /*Diese Funktion gibt an ob der Terrorist sichtbar
+     *oder unsichtbar ist. Diese wird verwendet um
+     *den Strobo Effekt zu realisieren, wenn der Terrorist stirbt.-> Signal zum QML Objekt*/
+
     return visibel;
 }
 
 bool AkTerrorist::getTerroristFire(){
-    //Funktion gibt zurück, ob Terrorist gerade am schiessen ist.
+    //Funktion gibt zurück, ob Terrorist gerade am schiessen ist.-> Signal zum QML Objekt
     bool State;
     if(TerroristFire == 0)
         {State = false;}
@@ -174,7 +153,7 @@ bool AkTerrorist::getTerroristFire(){
 
 AkTerrorist::~AkTerrorist()
 {
-    //qDebug() << "Terrorist dead!!!";
+    //Destruktor
 }
 
 
